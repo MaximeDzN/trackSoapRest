@@ -1,6 +1,7 @@
 package eu.ensup.rest.service;
 
 import eu.ensup.rest.domaine.Track;
+import io.swagger.v3.oas.annotations.Parameter;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -24,7 +25,7 @@ public class RestService {
     }
 
     @POST
-    public Response createTrackInJson(Track track){
+    public Response createTrackInJson(@Parameter(description = "Track is the best") Track track){
         String result = "Track save : " + track;
         return Response.status(201).entity(result).build();
     }
