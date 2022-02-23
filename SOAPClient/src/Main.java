@@ -19,8 +19,7 @@ public class Main {
         res.setTitle("Il n'a pas dit bonjour");
 
         // publish track
-        System.out.println(port.setTrack(res).toString());
-
-
+        Response response = port.setTrack(res);
+        System.out.println(response.getStatus().toString() + " " + response.getReason());
     }
 }
