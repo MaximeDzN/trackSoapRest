@@ -67,7 +67,8 @@ Vous aurez besoin d'avoir installé au préalable:
     > SOAPServer.war
     >
     > RESTServer.war 
-    >
+    >  
+    > SOAPClient.jar
 
 ## Usage
 
