@@ -4,7 +4,7 @@
 
 ## Besoin 
 
-Réaliser 2 serveurs web REST et SOAP et un client SOAP.
+Réaliser 2 serveurs web REST et SOAP et un client SOAP. 
 Le processus est le suivant : 
 
 ```mermaid
@@ -67,17 +67,22 @@ Vous aurez besoin d'avoir installé au préalable:
     > SOAPServer.war
     >
     > RESTServer.war 
-    >  
+    >
     > SOAPClient.jar
+    >
+    > OPENAPIServer.war
 
 ## Usage
+
+Supposition : votre serveur tomcat est hébergé en local machine sur le port 8080.
 
 1. **Déployer les fichiers suivants dans un serveur Tomcat :**
 
    > SOAPServer.war
    >
    > RESTServer.war 
-   
+   >
+   > OPENAPIServer.war
 
  2. **Vérifier que le déploiement du Serveur SOAP est réussi en cliquant sur le lien suivant :**
 
@@ -111,3 +116,10 @@ Vous aurez besoin d'avoir installé au préalable:
    Metallica Enter Sandman
    201 Crée
    ```
+
+## Documentation OPEN API REST
+
+La documentation de l'API REST sera hébergé sur un serveur web à l'addresse suivante :
+
+> http://localhost:8080/OPENAPIServer/
+
