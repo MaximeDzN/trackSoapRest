@@ -4,12 +4,18 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <parent>
+    <groupId>eu.ensup</groupId>
+    <artifactId>webservices</artifactId>
+    <version>1.0</version>
+  </parent>
+
   <groupId>eu.ensup</groupId>
-  <artifactId>soapserver</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <artifactId>SOAPServer</artifactId>
+  <version>1.0</version>
   <packaging>war</packaging>
 
-  <name>album Maven Webapp</name>
+  <name>SOAP Server</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -27,9 +33,20 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>com.sun.xml.ws</groupId>
+      <artifactId>jaxws-rt</artifactId>
+      <version>2.2.10</version>
+    </dependency>
+
+    <dependency>
       <groupId>javax.ws.rs</groupId>
       <artifactId>javax.ws.rs-api</artifactId>
       <version>2.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>5.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.core</groupId>
@@ -44,37 +61,71 @@
   </dependencies>
 
   <build>
-    <finalName>album</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <finalName>SOAPServer</finalName>
+    <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>2.2</version>
+        </plugin>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
-        </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
+          <configuration>
+            <filesets>
+              <fileset>
+                <directory>target</directory>
+                <directory>wsdl</directory>
+              </fileset>
+            </filesets>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
           <version>3.2.2</version>
+          <configuration>
+            <outputDirectory>
+              RELEASE/
+            </outputDirectory>
+          </configuration>
         </plugin>
         <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>jaxws-maven-plugin</artifactId>
+          <version>2.6</version>
+          <configuration>
+            <sei>eu.ensup.service.TrackWS</sei>
+            <genWsdl>true</genWsdl>
+            <resourceDestDir>${basedir}/src/main/webapp/WEB-INF/wsdl</resourceDestDir>
+            <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+            <verbose>true</verbose>
+          </configuration>
+
+          <executions>
+            <execution>
+              <id>gen-wsdl</id>
+              <phase>process-classes</phase>
+              <goals>
+                <goal>wsgen</goal>
+              </goals>
+            </execution>
+            <!--            <execution>-->
+            <!--              <id>generate-stubs</id>-->
+            <!--              <phase>process-classes</phase>-->
+            <!--              <goals>-->
+            <!--                <goal>wsimport</goal>-->
+            <!--              </goals>-->
+            <!--              <configuration>-->
+            <!--                <wsdlDirectory>target/jaxws/wsgen/wsdl</wsdlDirectory>-->
+            <!--                <wsdlFiles>-->
+            <!--                  <wsdlFile>&lt;!&ndash; class name goes here &ndash;&gt;TrackWS.wsdl</wsdlFile>-->
+            <!--                </wsdlFiles>-->
+            <!--                &lt;!&ndash; *** you need the next line to set the wsdlLocation in the generated stubs *** &ndash;&gt;-->
+            <!--                <wsdlLocation>http://localhost:8080/SOAPServer/track</wsdlLocation>-->
+            <!--              </configuration>-->
+            <!--            </execution>-->
+          </executions>
         </plugin>
       </plugins>
     </pluginManagement>

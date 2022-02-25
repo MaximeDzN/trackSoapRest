@@ -4,6 +4,6 @@
         version="2.0">
     <endpoint
             name="TrackWS"
-            implementation="eu.ensup.service"
+            implementation="eu.ensup.service.TrackWS"
             url-pattern="/track"/>
 </endpoints>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://service.ensup.eu/" xmlns:tns="http://service.ensup.eu/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="getTrack" type="tns:getTrack"/>
+
+  <xs:element name="getTrackResponse" type="tns:getTrackResponse"/>
+
+  <xs:element name="setTrack" type="tns:setTrack"/>
+
+  <xs:element name="setTrackResponse" type="tns:setTrackResponse"/>
+
+  <xs:complexType name="setTrack">
+    <xs:sequence>
+      <xs:element name="arg0" type="tns:track" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="track">
+    <xs:sequence>
+      <xs:element name="singer" type="xs:string" minOccurs="0"/>
+      <xs:element name="title" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="setTrackResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:response" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="response">
+    <xs:sequence>
+      <xs:element name="reason" type="xs:string" minOccurs="0"/>
+      <xs:element name="status" type="xs:int" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getTrack">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getTrackResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:track" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
