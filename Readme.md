@@ -121,5 +121,5 @@ Supposition : votre serveur tomcat est hébergé en local machine sur le port 80
 
 La documentation de l'API REST sera hébergé sur un serveur web à l'addresse suivante :
 
-> http://localhost:8080/OPENAPIServer/
+> http://localhost:8080/RESTServer/swagger-ui/index.html
 
