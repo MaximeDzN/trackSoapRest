@@ -76,9 +76,6 @@ Vous aurez besoin d'avoir installé au préalable:
    > SOAPServer.war
    >
    > RESTServer.war 
-   >
-   > SOAPClient.jar
-
    
 
  2. **Vérifier que le déploiement du Serveur SOAP est réussi en cliquant sur le lien suivant :**
